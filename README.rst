@@ -60,5 +60,5 @@ Usage::
 Examples::
 
     lcr-sms.py -o eq -b "Saturday at 9:30am.  Please come"
-    lcr-sms.py -o rs -b "The Party is on!" -v\
+    lcr-sms.py -o rs -b "The Party is on!" -v
 
