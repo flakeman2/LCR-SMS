@@ -1,3 +1,8 @@
+# credentials, log file, and do not call list
+.creds
+lcr_sms.log
+do_not_contact.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
