@@ -126,8 +126,8 @@ def main(args):
         message = client.messages \
             .create(
                 body=opts.body,
-                from_='+'+twilio_num, # Your twilio number. Costs about $1/month, $0.0075/SMS
-                to='+'+country_code+phone_num     # +1 is the USA country code, adjust for your location
+                from_='+'+country_code+twilio_num, # Your twilio number. Costs about $1/month, $0.0075/SMS
+                to='+'+country_code+phone_num      # +1 is the USA country code, adjust for your location
             )
         
         output = f"phone_num = {phone_num} ; body = \"{opts.body}\" ; {message.sid}"
