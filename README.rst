@@ -36,7 +36,7 @@ Add your username, password, and ward unit number to the '.creds' file::
 Important
 ---------
 Some members may not want to be contacted.  Simply create a file 'do_not_contact.txt'.
-Add their phone number with any relative information::
+Add their phone number with any relevant information::
 
     123-456-7890  # Name  # NO LONGER IN WARD
     987-654-3210  # Name  # DO NOT CALL
