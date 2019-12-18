@@ -22,7 +22,7 @@ For the LDS Leader and Clerk Resources (LCR tool), you'll need a calling that gi
 Log into https://lcr.churchofjesuschrist.org/ and find your ward unit number.
 Mine was in the upper right hand corner, just under the tool bar and looked like this::
 
-    Saratoga Springs Utah North Stake (461490) Harvest Hills 9th Ward (1009869)
+    Redacted Stake (46##90) Redacted 9th Ward (10###69)
 
 Add your username, password, and ward unit number to the '.creds' file::
 
