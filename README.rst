@@ -47,10 +47,14 @@ Program
 -------
 Usage::
 
-    lcr-sms.py [-h] [-o ORGANIZATION] [-b BODY] [-v]
+    lcr-sms.py [-h] [-l LIST] [-o ORGANIZATION] [-b BODY] [-v]
     
     arguments:
       -h, --help            show this help message and exit
+      -l LIST, --list LIST  The phone number list can be a file (one per line) or
+                            a list of phone numbers in quotes (must be space or
+                            comma delimited, phone numbers themselves cannot have
+                            spaces).
       -o ORGANIZATION, --org ORGANIZATION  The group you want to message.
                             This can be 'eq'for the Elders Quorum
                             'rs' for the Relief Society
@@ -63,4 +67,5 @@ Examples::
 
     lcr-sms.py -o eq -b "Saturday at 9:30am.  Please come"
     lcr-sms.py -o rs -b "The Party is on!" -v
+    lcr-sms.py -l "123-456-7890, 987-654-3210" -b "The Party is canceled :(" -v
 

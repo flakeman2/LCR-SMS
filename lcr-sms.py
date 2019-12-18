@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-A Python program for sending SMS messages using the Twilio and LDS Church's LCR API's
+A CLI Python program for sending SMS messages using the Twilio and LDS Church's LCR API's
 """
 
 import re
@@ -36,7 +36,10 @@ def main(args):
     do_not_contact = []
     phone_list = []
 
-    cli = argparse.ArgumentParser(description="Send an SMS text using the Twilio API")
+    cli = argparse.ArgumentParser(description="Send an SMS text using the Twilio and LCR API's")
+    cli.add_argument('-l', '--list', help="The phone number list can be a file (one per line) \
+            or a list of phone numbers in quotes (must be space or comma delimited, \
+            phone numbers themselves cannot have spaces).")
     cli.add_argument('-o', '--org', help="The organization you want to message. \
             This can be 'eq'for the Elders Quorum\
             'rs' for the Relief Society\
@@ -104,36 +107,54 @@ def main(args):
         account_sid, auth_token, twilio_num, username, password, ward_unit, and country_code.')
         exit(2)
 
-    lcr = LCR(username, password, ward_unit)
+    if opts.org:
+        lcr = LCR(username, password, ward_unit)
 
-    count = 0
-    months = 1
-    members_alt = lcr.members_alt()
-    print('len members_alt', len(members_alt))
-    #print(members_alt)
-    for member in members_alt:
+        count = 0
+        months = 1
+        members_alt = lcr.members_alt()
+        print('len members_alt', len(members_alt))
+        #print(members_alt)
         if opts.org == 'eq':
-            if member['priesthoodOffice'] != 'NONE':
-                #print(member)
-                print(member['nameFormats'].get('listPreferredLocal'), member['nameFormats'].get('givenPreferredLocal'), member['priesthoodOffice'], member['phoneNumber'])
-                #print('---------------------------------------')
-                count += 1
-                #if count == 6:
-                #    exit()
-
+            for member in members_alt:
+                if member['priesthoodOffice'] != 'NONE':
+                    #print(member)
+                    print(member['nameFormats'].get('listPreferredLocal'), member['nameFormats'].get('givenPreferredLocal'), member['priesthoodOffice'], member['phoneNumber'])
+                    #print('---------------------------------------')
+                    count += 1
+                    #if count == 6:
+                    #    exit()
         elif opts.org == 'rs':
             pass
         elif opts.org == 'all':
             pass
-        else
+        else:
             print('Unrecognized organization!  Exiting.')
-            exit(2)
-    
-    print('count', count)
-    exit()
+            exit(3)
+        
+        print('count', count)
+    elif opts.list:
+        if os.path.isfile(opts.list):
+            with open(opts.list) as phone_file:
+                for line in phone_file:
+                    line = line.split('#', 1)[0]
+                    line = re.sub('[-().+]', '', line)
+                    if line:
+                        phone_list.append(line.strip())
+        elif isinstance(opts.list, str):
+            line = re.sub('[-().+]', '', opts.list)
+            line = re.sub(',', ' ', line)
+            line = re.sub('  ', ' ', line)
+            phone_list = line.split(' ')
+        else:
+            print("Unrecognized list!  Exiting.")
+            exit(3)
+    else:
+        print('Incorrect or insufficent arguments!  Exiting.')
+        exit(3)
 
+    phone_list = list(filter(None, phone_list))  # remove empty entries
     client = Client(account_sid, auth_token)
-    #phone_list = list(filter(None, phone_list))
 
     logging.basicConfig(filename='lcr-sms.log', filemode='a',\
             format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',\
