@@ -41,7 +41,7 @@ Add their phone number with any relevant information::
     123-456-7890  # Name  # NO LONGER IN WARD
     987-654-3210  # Name  # DO NOT CALL
 
-The lcr-sms.py script will not message any numbers listed.
+The lcr-sms.py script will not message any numbers listed in 'do_not_contact.txt'.
    
 Usage::
 
