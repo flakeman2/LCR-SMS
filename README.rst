@@ -2,7 +2,7 @@
 LCR-SMS
 ##########
 
-A Python program for sending SMS messages using twilio and LDS LCR API's.
+A CLI Python program for sending SMS messages using the Twilio and LDS LCR API's.
 
 Getting Started
 ---------------
@@ -42,7 +42,9 @@ Add their phone number with any relevant information::
     987-654-3210  # Name  # DO NOT CALL
 
 The lcr-sms.py script will not message any numbers listed in 'do_not_contact.txt'.
-   
+
+Program
+-------
 Usage::
 
     lcr-sms.py [-h] [-o ORGANIZATION] [-b BODY] [-v]
