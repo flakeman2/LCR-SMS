@@ -31,7 +31,7 @@ Add your username, password, and ward unit number to the '.creds' file::
     ward_unit=#######
 
 *note, this program only works for members who have a phone number listed on their LDS profile.*
-*You should encourage members to update their information*
+*You should encourage members to update their information.*
 
 Important
 ---------
